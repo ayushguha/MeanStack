@@ -1,0 +1,115 @@
+//1. Write a MongoDB query to display all the documents in the collection restaurants.  
+db.Restaurants.find();
+
+//2.Write a MongoDB query to display the fields restaurant_id, name, and cuisine for all 
+//  the documentsin the collection restaurant.
+db.Restaurants.find({},{Name:1,Cuisine:1,RestaurantId:1})
+
+
+//3. Write a MongoDB query to display the fields restaurant_id, name, and cuisine, but 
+//   exclude the field _id for all the documents in the collection restaurant. 
+db.Restaurants.find({},{Name:1,Cuisine:1,_id:1})
+
+//4. Write a MongoDB query to display all the restaurant which is in Chennai.
+db.Restaurants.find({"Address.city":"Chennai"},{_id:0})
+
+//5. Write a MongoDB query to display the first 3 restaurant which is in the district 
+//   Chennai.
+db.Restaurants.find({"Address.city":"Chennai"},{_id:0}).limit(3)
+
+//6.Write a MongoDB query to display the next 3 restaurants after skipping first 3 which
+//  are in the Chennai.
+db.Restaurants.find({"Address.city":"Chennai"},{_id:0}).skip(3).limit(3)
+
+//7. Write a MongoDB query to find the restaurants who achieved a score more than 7
+db.Restaurants.find({"Ratings.scores":{$gt:7}},{_id:0})
+
+//8. Write a MongoDB query to find the restaurants that achieved a score, more than 
+//    7 but less than 9. 
+db.Restaurants.find({"Ratings.scores":{$gt:7,$lt:9}},{_id:0})
+
+//9.Write a MongoDB query to find the restaurants that do not prepare any cuisine 
+//   of ?Veg? and their grade score more than 7.
+db.Restaurants.find({Cuisine:{$nin:["Veg"]}},{$gt:7})
+
+//11. Write a MongoDB query to find the restaurants that do not prepare any cuisine of “Thai” and their grade score more than 7 
+db.Restaurant.find({$and:[{Cuisine:{$ne:"Thai"}},
+{"Ratings.score":{$gt:7}}]}
+,{_id:0,Name:1})
+
+//12 .Write a MongoDB query to find the restaurants which do not prepare any cuisine of 'American' and achieved a score more than 7 
+db.Restaurant.find({$and:[{Cuisine:{$ne:"American"}},
+{"Ratings.score":{$gt:7}}]}
+,{_id:0,Name:1})
+
+//13. Write a MongoDB query to find the restaurants which do not prepare any cuisine of 'American ' and achieved a grade point 'A' The document must be displayed according to the cuisine in descending order. 
+db.Restaurant.find({$and:[{Cuisine:{$ne:"American"}},
+{"Ratings.rating":"A"}]}
+,{_id:0,Name:1}).sort({"Cuisine":-1});
+
+//14. Write a MongoDB query to find the restaurant Id, name, cuisine for those restaurants which contain 'Wil' as first three letters for its name
+db.Restaurant.find({Name:{$regex:"^Wil"}}
+,{_id:1,Name:1,Cuisine:1})
+
+//15 . Write a MongoDB query to find the restaurant Id, name, city and cuisine for those restaurants which contain 'ces' as last three letters for its city.
+db.Restaurant.find({"Address.city":{$regex:"ces$"}}
+,{_id:1,Name:1,Cuisine:1,"Address.city":1})
+
+//16 . Write a MongoDB query to find the restaurant Id, name, city  and cuisine for those restaurants which contain 'Reg' as three letters somewhere in its name.  
+db.Restaurant.find({"Name":{$regex:"Reg"}}
+,{_id:1,Name:1,Cuisine:1,"Address.city":1})
+
+//17 .Write a MongoDB query to find the restaurants which belong to the district Bronx and prepared either American or Chinese dish. 
+db.Restaurant.find({$and:[{"Address.city":"Bronx"},{$or:[{Cuisine:"American"},
+{Cuisine:"Chinese"}]}
+]},{_id:0,Name:1})
+
+//18. Write a MongoDB query to find the restaurant Id, name, district and cuisine for those restaurants which belong to the district Chennai or Kanchipuram
+db.Restaurant.find({$or:[{"Address.city":"Chennai"},
+{"Address.city":"Kanchipuram"}]}
+,{_id:1,Name:1,District:1})
+
+//19. Write a MongoDB query to find the restaurant Id, name, district and cuisine for those restaurants which are not belonging to the district Chennai or Kanchipuram
+db.Restaurant.find({$or:[{"Address.city":{$ne:"Chennai"}},
+{"Address.city":{$ne:"Kanchipuram"}}]}
+,{_id:1,Name:1,District:1,Cuisine:1})
+
+//20 .Write a MongoDB query to find the restaurant Id, name, district and cuisine for those restaurants which achieved a score which is not more than 10. 
+db.Restaurant.find({"Ratings.score":{$lt:10}}
+,{_id:0,Name:1,District:1,Cuisine:1})
+
+//21 .Write a MongoDB query to find the restaurant Id, name, district and cuisine for those restaurants which prepared dish except 'American' and 'Chinees' or restaurant's name begins with letter 'Wil'. 
+db.Restaurant.find({$or:[{"Name":{$regex:"Wil"}},
+{$and:[{Cuisine:{$ne:"American"}},
+{Cuisine:{$ne:"Chinese"}}]}
+]},{_id:1,Name:1,District:1,Cuisine:1})
+
+//22 .Write a MongoDB query to find the restaurant Id, name, and grades for those restaurants which achieved a grade of "A" and scored 10 on an ISODate "2014-08-11T00:00:00Z" among many of survey dates.. 
+db.Restaurant.find({$and:[{"Ratings.rating":"A"},
+{"Ratings.score":10},{"Ratings.Date":ISODate ("2014-08-11T00:00:00Z")}]}
+,{_id:1,Name:1,"Ratings.rating":1,"Ratings.Date":1})
+
+//23 .Write a MongoDB query to find the restaurant Id, name and grades for those restaurants where the 2nd element of grades array contains a grade of "A" and score 9 on an ISODate "2014-08-11T00:00:00Z". 
+db.Restaurant.find({ "Ratings.2.date": ISODate("2014-08-11T00:00:00Z"), "Ratings.2.rating":"A" , "Ratings.2.score" : 8},{"_id" : 1,"Name":1,"Ratings":1});
+
+
+//25 .Write a MongoDB query to arrange the name of the restaurants in ascending order along with all the columns 
+db.Restaurant.find().sort({"Name" : 1})
+
+//26 .Write a MongoDB query to arrange the name of the restaurants in descending along with all the columns.  
+db.Restaurant.find().sort({"Name" : -1})
+
+//27 .Write a MongoDB query to arranged the name of the cuisine in ascending order and for that same cuisine district should be in descending order. 
+db.Restaurant.find().sort({"Cuisine":1,"District" : -1});
+
+//28 .. Write a MongoDB query to know whether all the addresses contains the street or not. 
+db.Restaurant.find({"Address.street" :{ $exists : true } });
+
+//31 .Write a MongoDB query to find the restaurant name, district, and cuisine for those restaurants which contains 'mon' as three letters somewhere in its name.  
+db.Restaurant.find( {Name : {$regex : "..nal.."}} ,{"District" : 1,"Name" : 1,"Cuisine" : 1 })
+
+//32 . Write a MongoDB query to find the restaurant name, district, and cuisine for those restaurants which contain 'Mad' as first three letters of its name 
+db.Restaurant.find( {Name : {$regex : "^McD"}} ,{"District" : 1,"Name" : 1,"Cuisine" : 1 })
+
+
+
