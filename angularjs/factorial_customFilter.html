@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="angular.min.js">
+
+</script>
+<script>
+var app=angular.module('customFilterApp',[]);
+
+
+app.filter('factorial',function(){
+	return function(n){
+		var i;
+		var f=1;
+		for(i=1;i<=n;i++){
+			f=f*i;
+		}
+             return f;
+	};
+});
+</script>
+</head>
+
+<body ng-App="customFilterApp" >
+<input type="number" ng-model="value">
+<input type="number" value={{value|factorial}}>
+
+
+
+
+</body>
+</html>

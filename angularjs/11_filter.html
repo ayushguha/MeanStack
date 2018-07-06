@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="angular.min.js">
+
+</script>
+</head>
+
+<body ng-App="" ng-init="names=['ram','arun','raj']" >
+<input type="text" ng-model="nf"/>
+<div ng-bind="nf"></div>
+
+<div ng-repeat="name in names | filter:nf">
+{{$index+1}}:{{name}}
+
+</div>
+
+
+
+
+</body>
+</html>

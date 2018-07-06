@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="angular.min.js"></script>
+		<script> var app=angular.module("myApp",[]);
+		app.controller("myctrl",function($scope){
+			
+			$scope.student=[{
+					name:"ciya",
+					subjects:[
+{name:"Corejava", marks:70},
+{name:"JSP", marks:80},
+{name:"C#", marks:90}
+					
+					],
+
+					total:function(){
+						var sum=0;
+						for(var i=0;i<$scope.student[0].subjects.length;i++)
+						{
+							sum=sum+$scope.student[0].subjects[i].marks;
+						}
+						return sum;
+					},
+					average:function(){
+						var avg;
+						avg=$scope.student[0].total()/3;
+						$scope.avg1=avg;
+						return avg;
+					}
+
+			},
+				{
+					name:"riya",
+					subjects:[
+{name:"java", marks:60},
+{name:"c++", marks:30},
+{name:"C#", marks:50}
+					
+					],
+
+					total:function(){
+						var sum=0;
+						for(var i=0;i<$scope.student[1].subjects.length;i++)
+						{
+							sum=sum+$scope.student[1].subjects[i].marks;
+						}
+						return sum;
+					},
+					average:function(){
+						var avg;
+						avg=$scope.student[1].total()/3;
+						$scope.avg2=avg;
+						return avg;
+					}
+
+			}
+			];
+			
+			$scope.compare=function(){
+			
+				if($scope.avg1>$scope.avg2){
+					return $scope.student[0].name;
+				}
+				else{
+					return $scope.student[1].name;
+				}
+			}
+			
+		});
+		
+	</script>
+</head>
+<body ng-App="myApp" ng-controller="myctrl">
+<table border="1px">
+	<tr>
+		<th>
+			Name
+		</th>
+		<th>
+			Subjects
+		</th>
+		<th>
+			Marks
+		</th>
+		<th>
+			Total
+		</th>
+		<th>
+			Average
+		</th>
+	</tr>
+				<tr ng-repeat="std in student">
+					<td>
+						{{std.name}}</td>
+						
+					<td>
+						<ul>
+							<li ng-repeat="subjects in std.subjects" >
+								{{subjects.name}}
+							</li>
+
+						
+						</ul>
+					</td>
+					<td>
+						<ul>
+							<li ng-repeat="subjects in std.subjects" >
+								{{subjects.marks}}
+							</li>
+
+						
+						</ul>
+						
+					</td>
+					<td>{{std.total()}}</td>
+					<td>{{std.average()}}</td>
+				</tr>
+			
+			
+		</table>
+		<!DOCTYPE html>
+<html>
+<head>
+	<script src="angular.min.js"></script>
+		<script> var app=angular.module("myApp",[]);
+		app.controller("myctrl",function($scope){
+			
+			$scope.student=[{
+					name:"ciya",
+					subjects:[
+{name:"Corejava", marks:70},
+{name:"JSP", marks:80},
+{name:"C#", marks:90}
+					
+					],
+
+					total:function(){
+						var sum=0;
+						for(var i=0;i<$scope.student[0].subjects.length;i++)
+						{
+							sum=sum+$scope.student[0].subjects[i].marks;
+						}
+						return sum;
+					},
+					average:function(){
+						var avg;
+						avg=$scope.student[0].total()/3;
+						$scope.avg1=avg;
+						return avg;
+					}
+
+			},
+				{
+					name:"riya",
+					subjects:[
+{name:"java", marks:60},
+{name:"c++", marks:30},
+{name:"C#", marks:50}
+					
+					],
+
+					total:function(){
+						var sum=0;
+						for(var i=0;i<$scope.student[1].subjects.length;i++)
+						{
+							sum=sum+$scope.student[1].subjects[i].marks;
+						}
+						return sum;
+					},
+					average:function(){
+						var avg;
+						avg=$scope.student[1].total()/3;
+						$scope.avg2=avg;
+						return avg;
+					}
+
+			}
+			];
+			
+			$scope.compare=function(){
+			
+				if($scope.avg1>$scope.avg2){
+					return $scope.student[0].name;
+				}
+				else{
+					return $scope.student[1].name;
+				}
+			}
+			
+		});
+		
+	</script>
+</head>
+<body ng-App="myApp" ng-controller="myctrl">
+<table border="1px">
+	<tr>
+		<th>
+			Name
+		</th>
+		<th>
+			Subjects
+		</th>
+		<th>
+			Marks
+		</th>
+		<th>
+			Total
+		</th>
+		<th>
+			Average
+		</th>
+	</tr>
+				<tr ng-repeat="std in student">
+					<td>
+						{{std.name}}</td>
+						
+					<td>
+						<ul>
+							<li ng-repeat="subjects in std.subjects" >
+								{{subjects.name}}
+							</li>
+
+						
+						</ul>
+					</td>
+					<td>
+						<ul>
+							<li ng-repeat="subjects in std.subjects" >
+								{{subjects.marks}}
+							</li>
+
+						
+						</ul>
+						
+					</td>
+					<td>{{std.total()}}</td>
+					<td>{{std.average()}}</td>
+				</tr>
+			
+			
+		</table>
+		<input type="number" name="" ng-model="avg1">
+<input type="number" name="" ng-model="avg2">
+		Greatest of them: {{compare()}}
+</body>
+</html>
+
+
+
+
+
+
+
+		Greatest of them: {{compare()}}
+</body>
+</html>
+
+
+
+
+

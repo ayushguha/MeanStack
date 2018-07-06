@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="angular.min.js">
+
+</script>
+<script>
+var app=angular.module('customFilterApp',[]);
+
+app.controller("myctrl",function($scope,$filter)
+{
+	$scope.name;
+}
+
+app.filter('convertUpper',function(){
+	return function(item,ops){
+		if(ops==true)
+		{
+			return item.sort();
+		}
+		else if(ops==false)
+		{
+			return item.sort().reverse();
+		}
+	};
+});
+</script>
+</head>
+
+<body ng-App="customFilterApp" ng-init="name=['a','z','k']" ng-controller="myctrl">
+
+<input type="button" value="asc" ng-click="fun()">
+<input type="button" value="desc" ng-click="fun1()">
+<div ng-repeat="x in name|convertUpper:false">
+{{x}}
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+<script src="angular.min.js">
+
+</script>
+</head>
+
+<body ng-App="" ng-init="employee=[{empID:'e001',empname:'ayush',basicPay:50000},{empID:'e002',empname:'ayu',basicPay:9000}]"/>
+
+
+
+<h2>employee Table</h2>
+
+<table>
+  <tr>
+    <th>empID</th>
+    <th>EmpName</th>
+    <th>BasicPay</th>
+  </tr>
+  <tr>
+    <td>{{employee[0].empID}}</td>
+    <td>{{employee[0].empname}}</td>
+    <td>{{employee[0].basicPay}}</td>
+  </tr>
+  <tr>
+    <td>{{employee[1].empID}}</td>
+    <td>{{employee[1].empname}}</td>
+    <td>{{employee[1].basicPay}}</td>
+  </tr>
+  
+</table>
+
+</body>
+</html>

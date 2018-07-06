@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="angular.min.js"></script>
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+	$scope.val=false;
+	$scope.myFunction = function() {
+		
+     $scope.val=!$scope.val;
+ }
+});
+
+</script>
+</head>
+
+<body ng-App="myApp" ng-controller="myCtrl" >
+<button ng-click="myFunction()">toggle</button>
+<div ng-show="val">
+<p><b>phones<b></p>
+<ul>
+    <li>apple</li>
+     <li>samsung</li>
+      <li>mi</li>
+       <li>micromax</li>
+       </ul>
+</div>
+</body>
+</html>

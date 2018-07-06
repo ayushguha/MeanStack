@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="angular.min.js">
+
+</script>
+<script>
+var app=angular.module('customFilterApp',[]);
+
+app.controller("myctrl",function($scope)
+{
+	$scope.name;
+
+	$scope.fun=function()
+	{
+		var r=$scope.name;
+		return r.sort();
+	}
+	$scope.fun1=function()
+	{
+		var p=$scope.name;
+		return p.sort().reverse();
+	}
+});
+
+
+
+</script>
+</head>
+
+<body ng-App="customFilterApp" ng-init="name=['a','z','k']" ng-controller="myctrl">
+
+<input type="button" value="asc" ng-click="fun()">
+<input type="button" value="desc" ng-click="fun1()">
+<div ng-repeat="x in name">
+{{x}}
+</div>
+</body>
+</html>
